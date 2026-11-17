@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Formulário de Orientação de Pesquisa · FBC</title>
+<style>
+:root{--bg:#f6f4ef;--card:#fff;--tx:#1d2330;--mut:#5d6575;--ac:#1f4e79;--acx:#fff;--bd:#d9d5ca;--ok:#1d6b3a;--er:#a42222;--note:#eaf1f8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171d;--card:#1d222b;--tx:#e8e9ec;--mut:#9aa2b1;--ac:#7fb2e5;--acx:#10151c;--bd:#323946;--ok:#6fcf93;--er:#ff8d8d;--note:#222c38}}
+:root[data-theme="dark"]{--bg:#14171d;--card:#1d222b;--tx:#e8e9ec;--mut:#9aa2b1;--ac:#7fb2e5;--acx:#10151c;--bd:#323946;--ok:#6fcf93;--er:#ff8d8d;--note:#222c38}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 Georgia,"Times New Roman",serif}
+main{max-width:720px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.6rem;line-height:1.2;margin:.2em 0}
+h2{font-size:1.1rem;margin:0 0 12px;color:var(--ac);font-family:system-ui,sans-serif}
+.sub{color:var(--mut);font-family:system-ui,sans-serif;font-size:.9rem}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:18px;margin:16px 0}
+.note{background:var(--note);border-radius:12px;padding:16px 18px;margin:16px 0;font-family:system-ui,sans-serif;font-size:.93rem}
+.note ul{margin:8px 0 0;padding-left:20px}
+label.l{display:block;font-family:system-ui,sans-serif;font-weight:600;font-size:.92rem;margin:14px 0 4px}
+.h{font-weight:400;color:var(--mut);font-size:.82rem;display:block}
+input[type=text],input[type=email],textarea,select{width:100%;padding:10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit;font-size:.95rem}
+textarea{min-height:90px;resize:vertical}
+.opts{display:flex;flex-wrap:wrap;gap:8px 16px;font-family:system-ui,sans-serif;font-size:.92rem}
+.opts label,.chk{display:flex;gap:8px;align-items:flex-start;cursor:pointer}
+.chk{font-family:system-ui,sans-serif;font-size:.92rem;margin:10px 0}
+input[type=checkbox],input[type=radio]{margin-top:4px;accent-color:var(--ac)}
+button{font:600 1rem system-ui,sans-serif;padding:12px 22px;border:0;border-radius:10px;background:var(--ac);color:var(--acx);cursor:pointer}
+button.s{background:transparent;color:var(--ac);border:1px solid var(--ac);padding:8px 14px;font-size:.88rem}
+#msg{font-family:system-ui,sans-serif;margin-top:12px;font-size:.93rem}
+.ok{color:var(--ok)}.er{color:var(--er)}
+.row{border-top:1px solid var(--bd);padding:12px 0;font-family:system-ui,sans-serif;font-size:.88rem}
+.row b{font-size:.95rem}
+.hide{display:none}
+</style>
+</head>
+<body>
+<main>
+<div class="sub">Faculdade Batista do Cariri · Bacharelado em Teologia · Metodologia da Pesquisa I</div>
+<h1>Cadastro de interesses de pesquisa e disponibilidade para orientação</h1>
+<p class="sub">Coordenação: Me. Rafael Omar Nachabe. Responda uma única vez; você pode voltar e atualizar suas respostas depois.</p>
+
+<div class="note"><b>Condições da orientação</b>
+<ul>
+<li>Cada professor pode assumir <b>no máximo 2 orientações</b>.</li>
+<li>Encontros preferencialmente <b>semanais</b> (ideal).</li>
+<li>O professor tem o <b>direito de declinar</b> uma orientação.</li>
+<li>A orientação só é aceita mediante a <b>entrega do projeto de pesquisa completo</b> pelo aluno.</li>
+</ul></div>
+
+<form id="f" onsubmit="return false">
+<div class="card"><h2>1. Identificação</h2>
+<label class="l" for="nome">Nome completo</label><input type="text" id="nome" required>
+<label class="l" for="email">E-mail</label><input type="email" id="email" required>
+<label class="l" for="curso">Disciplina(s) que leciona na FBC</label><input type="text" id="curso">
+<label class="l" for="tit">Titulação</label>
+<select id="tit"><option value="">Selecione…</option><option>Especialista</option><option>Mestre(a)</option><option>Doutor(a)</option><option>Pós-doutor(a)</option></select>
+</div>
+
+<div class="card"><h2>2. Áreas e interesses</h2>
+<label class="l">Em que áreas você gostaria de orientar? <span class="h">Marque quantas quiser.</span></label>
+<div class="opts" id="areas"></div>
+<label class="l" for="outras">Outras áreas ou subtemas</label><input type="text" id="outras">
+<label class="l" for="int">Seus interesses de pesquisa</label><textarea id="int" placeholder="Linhas, problemas e abordagens que lhe interessam"></textarea>
+<label class="l" for="lei">Leituras que você vem fazendo <span class="h">Autores, obras, artigos ou periódicos de referência.</span></label><textarea id="lei"></textarea>
+<label class="l" for="foco">Em quais temas você está mais centrado(a) agora?</label><textarea id="foco"></textarea>
+<label class="l" for="met">Metodologias que domina ou prefere orientar</label>
+<div class="opts" id="mets"></div>
+</div>
+
+<div class="card"><h2>3. Disponibilidade</h2>
+<label class="l">Quantas orientações pode assumir neste período?</label>
+<div class="opts"><label><input type="radio" name="vagas" value="0"> 0 (não neste período)</label><label><input type="radio" name="vagas" value="1"> 1</label><label><input type="radio" name="vagas" value="2"> 2 (máximo)</label></div>
+<label class="l">Encontros semanais são possíveis?</label>
+<div class="opts"><label><input type="radio" name="sem" value="sim"> Sim, semanalmente</label><label><input type="radio" name="sem" value="quinzenal"> Só quinzenalmente</label><label><input type="radio" name="sem" value="outro"> Outro formato</label></div>
+<label class="l" for="hor">Dias e horários preferidos para os encontros</label><input type="text" id="hor">
+<label class="l" for="mod">Modalidade</label>
+<select id="mod"><option value="">Selecione…</option><option>Presencial</option><option>Online</option><option>Presencial ou online</option></select>
+</div>
+
+<div class="card"><h2>4. Ciência das condições</h2>
+<label class="chk"><input type="checkbox" id="c1"> Estou ciente de que posso orientar no máximo 2 trabalhos.</label>
+<label class="chk"><input type="checkbox" id="c2"> Estou ciente de que tenho o direito de declinar uma orientação.</label>
+<label class="chk"><input type="checkbox" id="c3"> Só aceitarei orientar após a entrega do projeto de pesquisa completo.</label>
+<label class="l" for="obs">Observações</label><textarea id="obs"></textarea>
+<p><button id="send">Enviar respostas</button></p>
+<div id="msg"></div>
+</div>
+</form>
+
+<div class="card hide" id="adm"><h2>Painel do coordenador</h2>
+<p class="sub" id="cnt"></p>
+<p><button class="s" id="csv">Baixar CSV</button></p>
+<div id="list"></div></div>
+</main>
+<script>
+var AREAS=["Teologia Sistemática","Teologia Bíblica","Teologia Histórica","Teologia Filosófica","Exegese","Línguas Originais","Aconselhamento","Teologia Pastoral","Biografias e Histórias Eclesiásticas","Pedagogia Cristã","Teologia e Estética","Ética","Apologética","Teologia Contemporânea","Práticas Eclesiásticas","Discipulado e Teologia Prática"];
+var METS=["Pesquisa bibliográfica","Análise exegética de texto bíblico","Pesquisa histórico-documental","Análise conceitual (sistemática/filosófica)","Pesquisa de campo (qualitativa)","Estudo de caso","Pesquisa-ação"];
+function g(i){return document.getElementById(i)}
+function mk(id,arr,nm){g(id).innerHTML=arr.map(function(a){return '<label><input type="checkbox" name="'+nm+'" value="'+a+'"> '+a+'</label>'}).join('')}
+mk('areas',AREAS,'area');mk('mets',METS,'met');
+function chk(n){return Array.prototype.map.call(document.querySelectorAll('input[name='+n+']:checked'),function(e){return e.value})}
+function rad(n){var e=document.querySelector('input[name='+n+']:checked');return e?e.value:''}
+function say(t,c){var m=g('msg');m.className=c;m.textContent=t}
+var db=null,uid=null,rows=[];
+function collect(){return{nome:g('nome').value.trim(),email:g('email').value.trim(),curso:g('curso').value.trim(),titulacao:g('tit').value,areas:chk('area'),outras:g('outras').value.trim(),interesses:g('int').value.trim(),leituras:g('lei').value.trim(),foco:g('foco').value.trim(),metodologias:chk('met'),vagas:rad('vagas'),semanal:rad('sem'),horarios:g('hor').value.trim(),modalidade:g('mod').value,obs:g('obs').value.trim(),ciente:g('c1').checked&&g('c2').checked&&g('c3').checked,enviadoEm:new Date().toISOString()}}
+function fill(d){var s=function(i,v){if(v!=null)g(i).value=v};s('nome',d.nome);s('email',d.email);s('curso',d.curso);s('tit',d.titulacao);s('outras',d.outras);s('int',d.interesses);s('lei',d.leituras);s('foco',d.foco);s('hor',d.horarios);s('mod',d.modalidade);s('obs',d.obs);
+Array.prototype.forEach.call(document.querySelectorAll('input[name=area],input[name=met]'),function(e){e.checked=(d.areas||[]).concat(d.metodologias||[]).indexOf(e.value)>-1});
+Array.prototype.forEach.call(document.querySelectorAll('input[name=vagas],input[name=sem]'),function(e){e.checked=(e.value===d.vagas||e.value===d.semanal)});
+if(d.ciente){g('c1').checked=g('c2').checked=g('c3').checked=true}}
+function plain(d){return 'Professor: '+d.nome+' ('+d.email+')\nCurso: '+d.curso+' | Titulação: '+d.titulacao+'\nÁreas: '+d.areas.join(', ')+(d.outras?'; '+d.outras:'')+'\nInteresses: '+d.interesses+'\nLeituras: '+d.leituras+'\nTemas atuais: '+d.foco+'\nMetodologias: '+d.metodologias.join(', ')+'\nVagas: '+d.vagas+' | Encontros: '+d.semanal+' | Horários: '+d.horarios+' | Modalidade: '+d.modalidade+'\nObs: '+d.obs}
+g('send').onclick=async function(){
+var d=collect();
+if(!d.nome||!d.email){say('Preencha nome e e-mail.','er');return}
+if(d.vagas===''||d.semanal===''){say('Informe o número de orientações e a disponibilidade para encontros semanais.','er');return}
+if(!d.ciente){say('Marque as três declarações de ciência para enviar.','er');return}
+if(!db||!uid){try{await navigator.clipboard.writeText(plain(d));say('Não foi possível salvar online (entre com sua conta para enviar). Suas respostas foram copiadas: cole em um e-mail ao coordenador.','er')}catch(e){say('Não foi possível salvar online. Entre com sua conta e tente novamente.','er')}return}
+try{await db.collection('respostas').doc(uid).set(d);say('Respostas enviadas. Obrigado, '+d.nome.split(' ')[0]+'! Você pode reabrir esta página para atualizá-las.','ok')}catch(e){say('Erro ao enviar ('+((e&&e.code)||'desconhecido')+'). Tente novamente.','er')}};
+function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML}
+function render(){g('cnt').textContent=rows.length+' professor(es) responderam.';
+g('list').innerHTML=rows.map(function(d){return '<div class="row"><b>'+esc(d.nome)+'</b> · '+esc(d.email)+'<br>Vagas: '+esc(d.vagas)+' · Encontros: '+esc(d.semanal)+' · '+esc(d.horarios)+'<br>Áreas: '+esc((d.areas||[]).join(', ')+(d.outras?'; '+d.outras:''))+'<br>Temas atuais: '+esc(d.foco)+'<br>Interesses: '+esc(d.interesses)+'<br>Leituras: '+esc(d.leituras)+'</div>'}).join('')}
+g('csv').onclick=async function(){
+var ks=['nome','email','curso','titulacao','areas','outras','interesses','leituras','foco','metodologias','vagas','semanal','horarios','modalidade','obs','enviadoEm'];
+var q=function(v){v=Array.isArray(v)?v.join('; '):(v==null?'':String(v));return '"'+v.replace(/"/g,'""')+'"'};
+var t='\ufeff'+ks.join(',')+'\n'+rows.map(function(r){return ks.map(function(k){return q(r[k])}).join(',')}).join('\n');
+try{var dl=await claude.use('downloads');if(dl)await dl.save({filename:'orientacoes-fbc.csv',data:t})}catch(e){}};
+(async function(){
+try{var user=await claude.use('user');db=await claude.use('db');
+if(user&&db){uid=await user.id();
+try{var s=await db.collection('respostas').doc(uid).get();if(s.exists){fill(s.data());say('Você já respondeu. Pode atualizar e reenviar.','ok')}}catch(e){}
+if(user.isOwner()||user.canEdit()){g('adm').classList.remove('hide');
+db.collection('respostas').onSnapshot(function(sn){rows=sn.docs.map(function(x){return x.data()});render()},function(){})}}}catch(e){}
+})();
+</script>
+</body>
+</html>
